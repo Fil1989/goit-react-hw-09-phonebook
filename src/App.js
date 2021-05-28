@@ -7,7 +7,6 @@ import authSelectors from './redux/auth-selectors';
 import image from './images/avatar.png';
 import { getCurrentUser, logout } from './redux/operations';
 import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
 
 const HomePage = lazy(() => import('./components/HomePage'));
 const Registration = lazy(() => import('./components/Registration'));
@@ -17,7 +16,6 @@ const LogIn = lazy(() => import('./components/LogIn'));
 function App({ isAutenticated, myLogin, avatar, onLogout, onGetCurrentUser }) {
   useEffect(() => {
     onGetCurrentUser();
-    // console.log('Hello World!');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -64,9 +62,9 @@ function App({ isAutenticated, myLogin, avatar, onLogout, onGetCurrentUser }) {
             {isAutenticated && <Redirect to="/contacts" />}
           </Route>
           <PrivateRoute path="/contacts" component={Contacts} />
-          <PublicRoute path="/login" component={LogIn}>
+          <Route path="/login" component={LogIn}>
             {isAutenticated && <Redirect to="/contacts" />}
-          </PublicRoute>
+          </Route>
           )
           <Redirect to="/" />
         </Switch>
