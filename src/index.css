@@ -31,7 +31,18 @@ header.menu {
   margin-left: 10px;
 }
 .menu-profile {
+  /* display: flex;
+  justify-content: ; */
   margin-right: 10px;
+  margin-left: 10px;
+}
+.active-link {
+  color: purple;
+  text-decoration: none;
+  font-weight: bold;
+}
+.btn-logout {
+  /* display: inline; */
   margin-left: 10px;
 }
 .App {

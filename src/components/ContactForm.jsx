@@ -34,12 +34,12 @@ function ContactForm({ filter, onFilterChange, onSubmitPostContact }) {
             id="addContact"
             value={name}
           />
-          <label htmlFor="addNumber">Number</label>
+          <label htmlFor="addNumber">Phone</label>
           <input
             type="tel"
             name="number"
             pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
-            placeholder="Enter a number"
+            placeholder="Phone number"
             onChange={onNumberChange}
             id="addNumber"
             value={number}

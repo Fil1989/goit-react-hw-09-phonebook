@@ -22,11 +22,20 @@ function App({ isAutenticated, myLogin, avatar, onLogout, onGetCurrentUser }) {
     <div className="App">
       <header className="menu">
         <div>
-          <NavLink to="/" className="menu-main">
+          <NavLink
+            to="/"
+            exact
+            className="menu-main"
+            activeClassName="active-link"
+          >
             Головна
           </NavLink>
           {isAutenticated ? (
-            <NavLink to="/contacts" className="menu-main">
+            <NavLink
+              to="/contacts"
+              className="menu-main"
+              activeClassName="active-link"
+            >
               Контакти
             </NavLink>
           ) : (
@@ -37,18 +46,26 @@ function App({ isAutenticated, myLogin, avatar, onLogout, onGetCurrentUser }) {
         {isAutenticated ? (
           <div className="menu-profile">
             <span>
-              <img src={avatar} alt="Avatar" width="20" /> Welcome,{myLogin}
+              <img src={avatar} alt="Avatar" width="20" /> Welcome, {myLogin}
             </span>
-            <button onClick={onLogout}>
+            <button onClick={onLogout} className="btn-logout">
               <NavLink to="/">Logout</NavLink>
             </button>
           </div>
         ) : (
           <div>
-            <NavLink to="/register" className="menu-profile">
+            <NavLink
+              to="/register"
+              className="menu-profile"
+              activeClassName="active-link"
+            >
               Реєстрація
             </NavLink>
-            <NavLink to="/login" className="menu-profile">
+            <NavLink
+              to="/login"
+              className="menu-profile"
+              activeClassName="active-link"
+            >
               Логін
             </NavLink>
           </div>
