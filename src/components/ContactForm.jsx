@@ -1,17 +1,20 @@
 import { handleFilterChange } from '../redux/actions';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { postContactToServer } from '../redux/operations';
 import { useState, useRef, useEffect } from 'react';
 
-import PropTypes from 'prop-types';
-
-function ContactForm({ filter, onFilterChange, onSubmitPostContact }) {
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();
   }, []);
+  const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
+  const onFilterChange = e => dispatch(handleFilterChange(e));
+  const onSubmitPostContact = e => dispatch(postContactToServer(e));
+
   const onSubmit = e => {
     onSubmitPostContact(e);
     setName('');
@@ -69,21 +72,5 @@ function ContactForm({ filter, onFilterChange, onSubmitPostContact }) {
     </>
   );
 }
-const mapStateToProps = state => {
-  return {};
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    onFilterChange: e => dispatch(handleFilterChange(e)),
-    onSubmitPostContact: e => dispatch(postContactToServer(e)),
-  };
-};
 
-ContactForm.propTypes = {
-  filter: PropTypes.string,
-  onChange: PropTypes.func,
-  onFilterChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+export default ContactForm;
