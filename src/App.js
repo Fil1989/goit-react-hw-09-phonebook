@@ -1,7 +1,7 @@
 import { Switch, NavLink, Redirect, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import { connect, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Suspense, lazy } from 'react';
 import image from './images/avatar.png';
 import { getCurrentUser, logout } from './redux/operations';
@@ -12,7 +12,11 @@ const Registration = lazy(() => import('./components/Registration'));
 const Contacts = lazy(() => import('./components/Contacts'));
 const LogIn = lazy(() => import('./components/LogIn'));
 
-function App({ /*avatar,*/ onLogout, onGetCurrentUser }) {
+function App(
+  {
+    /*onLogout, onGetCurrentUser */
+  },
+) {
   useEffect(() => {
     onGetCurrentUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -20,6 +24,10 @@ function App({ /*avatar,*/ onLogout, onGetCurrentUser }) {
   const isAutenticated = useSelector(state => state.isAutenticated);
   const myLogin = useSelector(state => state.user.name);
   const avatar = image;
+  const dispatch = useDispatch();
+  const onLogout = () => dispatch(logout());
+  const onGetCurrentUser = () => dispatch(getCurrentUser());
+
   return (
     <div className="App">
       <header className="menu">
@@ -92,9 +100,4 @@ function App({ /*avatar,*/ onLogout, onGetCurrentUser }) {
   );
 }
 
-const mapDispatchToProps = {
-  onLogout: () => logout(),
-  onGetCurrentUser: () => getCurrentUser(),
-};
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
