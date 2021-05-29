@@ -12,11 +12,7 @@ const Registration = lazy(() => import('./components/Registration'));
 const Contacts = lazy(() => import('./components/Contacts'));
 const LogIn = lazy(() => import('./components/LogIn'));
 
-function App(
-  {
-    /*onLogout, onGetCurrentUser */
-  },
-) {
+function App() {
   useEffect(() => {
     onGetCurrentUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,9 +1,13 @@
-// import { handleDelete } from '../../redux/actions';
 import { deleteContactFromServer } from '../../redux/operations';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
-function ContactList({ filter, contacts, isLoading, onDelete }) {
+function ContactList() {
+  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(state => state.contacts);
+  const isLoading = useSelector(state => state.isLoading);
+  const dispatch = useDispatch();
+  const onDelete = id => dispatch(deleteContactFromServer(id));
+
   return (
     <section className="contact_list">
       {filter.length === 0 &&
@@ -20,21 +24,4 @@ function ContactList({ filter, contacts, isLoading, onDelete }) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    filter: state.filter,
-    contacts: state.contacts,
-    isLoading: state.isLoading,
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    onDelete: id => dispatch(deleteContactFromServer(id)),
-  };
-};
-ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default ContactList;
