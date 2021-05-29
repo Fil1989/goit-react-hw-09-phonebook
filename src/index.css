@@ -1,3 +1,9 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,7 +17,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+input {
+  height: 30px;
+}
 header.menu {
   width: 100%;
   height: 3em;
@@ -80,4 +88,21 @@ label {
 .btn {
   margin-top: 20px;
   width: 50%;
+}
+.name_field::after {
+  content: '';
+}
+.name_field {
+  position: relative;
+}
+.name_field1:focus ~ .name_svg {
+  color: #3f51b5;
+  transition: color 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.name_svg {
+  position: absolute;
+  right: 90px;
+  /* top: 2px; */
+  top: 50%;
+  transform: translateY(-50%);
 }
