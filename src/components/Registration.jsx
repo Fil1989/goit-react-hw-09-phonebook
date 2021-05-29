@@ -1,7 +1,10 @@
 import { registerAUser } from '../redux/operations';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-const Registration = ({ submitOfRegistration }) => {
+const Registration = () => {
+  const dispatch = useDispatch();
+  const submitOfRegistration = e => dispatch(registerAUser(e));
+
   return (
     <section className="registration">
       <form onSubmit={submitOfRegistration} className="add_contact__form">
@@ -42,8 +45,4 @@ const Registration = ({ submitOfRegistration }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  submitOfRegistration: e => dispatch(registerAUser(e)),
-});
-
-export default connect(null, mapDispatchToProps)(Registration);
+export default Registration;

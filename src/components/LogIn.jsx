@@ -1,7 +1,10 @@
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginOperation } from '../redux/operations';
 
-const LogIn = ({ login }) => {
+const LogIn = () => {
+  const dispatch = useDispatch();
+  const login = e => dispatch(loginOperation(e));
+
   return (
     <section className="login">
       <form onSubmit={login}>
@@ -33,8 +36,4 @@ const LogIn = ({ login }) => {
   );
 };
 
-const mapDispatchToProps = {
-  login: e => loginOperation(e),
-};
-
-export default connect(null, mapDispatchToProps)(LogIn);
+export default LogIn;
