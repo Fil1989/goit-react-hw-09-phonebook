@@ -1,14 +1,17 @@
 import { handleFilterChange } from '../redux/actions';
 import { connect } from 'react-redux';
 import { postContactToServer } from '../redux/operations';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 
 function ContactForm({ filter, onFilterChange, onSubmitPostContact }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   const onSubmit = e => {
     onSubmitPostContact(e);
     setName('');
@@ -33,6 +36,7 @@ function ContactForm({ filter, onFilterChange, onSubmitPostContact }) {
             onChange={onNameChange}
             id="addContact"
             value={name}
+            ref={inputRef}
           />
           <label htmlFor="addNumber">Phone</label>
           <input
