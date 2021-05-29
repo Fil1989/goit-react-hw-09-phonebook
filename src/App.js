@@ -1,9 +1,8 @@
 import { Switch, NavLink, Redirect, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { Suspense, lazy } from 'react';
-import authSelectors from './redux/auth-selectors';
 import image from './images/avatar.png';
 import { getCurrentUser, logout } from './redux/operations';
 import PrivateRoute from './components/PrivateRoute';
@@ -13,11 +12,13 @@ const Registration = lazy(() => import('./components/Registration'));
 const Contacts = lazy(() => import('./components/Contacts'));
 const LogIn = lazy(() => import('./components/LogIn'));
 
-function App({ isAutenticated, myLogin, avatar, onLogout, onGetCurrentUser }) {
+function App({ avatar, onLogout, onGetCurrentUser }) {
   useEffect(() => {
     onGetCurrentUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const isAutenticated = useSelector(state => state.isAutenticated);
+  const myLogin = useSelector(state => state.user.name);
   return (
     <div className="App">
       <header className="menu">
@@ -90,8 +91,6 @@ function App({ isAutenticated, myLogin, avatar, onLogout, onGetCurrentUser }) {
   );
 }
 const mapStateToProps = state => ({
-  isAutenticated: authSelectors.getIsAunticated(state),
-  myLogin: authSelectors.getUserLogin(state),
   avatar: image,
 });
 
