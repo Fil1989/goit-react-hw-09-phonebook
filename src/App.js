@@ -12,13 +12,14 @@ const Registration = lazy(() => import('./components/Registration'));
 const Contacts = lazy(() => import('./components/Contacts'));
 const LogIn = lazy(() => import('./components/LogIn'));
 
-function App({ avatar, onLogout, onGetCurrentUser }) {
+function App({ /*avatar,*/ onLogout, onGetCurrentUser }) {
   useEffect(() => {
     onGetCurrentUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const isAutenticated = useSelector(state => state.isAutenticated);
   const myLogin = useSelector(state => state.user.name);
+  const avatar = image;
   return (
     <div className="App">
       <header className="menu">
@@ -90,13 +91,10 @@ function App({ avatar, onLogout, onGetCurrentUser }) {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  avatar: image,
-});
 
 const mapDispatchToProps = {
   onLogout: () => logout(),
   onGetCurrentUser: () => getCurrentUser(),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
