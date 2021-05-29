@@ -4,22 +4,22 @@ import { postContactToServer } from '../redux/operations';
 import { useState, useRef, useEffect } from 'react';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  someColor: { color: 'red' },
-  name_svg: {
-    color: 'red',
-    position: 'absolute',
-    right: '90px',
-    /* top: 2px; */
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-});
+// const useStyles = makeStyles({
+//   someColor: { color: 'red' },
+//   name_svg: {
+//     color: 'red',
+//     position: 'absolute',
+//     right: '90px',
+//     /* top: 2px; */
+//     top: '50%',
+//     transform: 'translateY(-50%)',
+//   },
+// });
 
 function ContactForm() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const inputRef = useRef(null);
