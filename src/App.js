@@ -34,7 +34,7 @@ function App() {
             className="menu-main"
             activeClassName="active-link"
           >
-            Головна
+            Home
           </NavLink>
           {isAutenticated ? (
             <NavLink
@@ -42,10 +42,10 @@ function App() {
               className="menu-main"
               activeClassName="active-link"
             >
-              Контакти
+              Contacts
             </NavLink>
           ) : (
-            <span>Контакти</span>
+            <span>Contacts</span>
           )}
         </div>
 
@@ -65,14 +65,14 @@ function App() {
               className="menu-profile"
               activeClassName="active-link"
             >
-              Реєстрація
+              Sign in
             </NavLink>
             <NavLink
               to="/login"
               className="menu-profile"
               activeClassName="active-link"
             >
-              Логін
+              Log in
             </NavLink>
           </div>
         )}
